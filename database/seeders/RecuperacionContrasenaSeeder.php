@@ -1,0 +1,25 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\RecuperacionContrasena;
+use App\Models\Usuario;
+use Illuminate\Database\Seeder;
+
+class RecuperacionContrasenaSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $usuarios = Usuario::pluck('id_usuario')->all();
+
+        if (empty($usuarios)) {
+            return;
+        }
+
+        for ($i = 0; $i < 3; $i++) {
+            RecuperacionContrasena::factory()->create([
+                'id_usuario' => fake()->randomElement($usuarios),
+            ]);
+        }
+    }
+}

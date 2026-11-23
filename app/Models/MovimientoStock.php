@@ -22,8 +22,7 @@ class MovimientoStock extends Model
         'cantidad',
         'stock_antes',
         'stock_despues',
-        'motivo',
-        'fecha'
+        'motivo'
     ];
     public function producto()
     {
