@@ -11,7 +11,7 @@ services:
       DB_CONNECTION: pgsql
       DB_HOST: db
       DB_PORT: 5432
-      DB_DATABASE: codemix
+      DB_DATABASE: Inventario_codemix
       DB_USERNAME: postgres
       DB_PASSWORD: "1234"
     ports:
@@ -29,7 +29,7 @@ services:
     image: postgres:15-alpine
     container_name: codemix_postgres_container
     environment:
-      POSTGRES_DB: codemix
+      POSTGRES_DB: Inventario_codemix
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
     ports:
@@ -39,7 +39,7 @@ services:
     volumes:
       - pgdata_camuad:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d codemix"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Inventario_codemix"]
       interval: 5s
       timeout: 5s
       retries: 10
