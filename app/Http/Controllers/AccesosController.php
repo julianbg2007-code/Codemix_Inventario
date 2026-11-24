@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concers\AuthorizesWitchPermissions;
 use App\Services\AccesoService;
 use App\Http\Requests\AccesosRequest;
 use Carbon\Carbon;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class AccesosController extends Controller
+class AccesosController extends Controller implements HasMiddleware
 {
+   use AuthorizesWitchPermissions;
+
+   public static function permissions(): array
+   {
+    return [ 
+        //que metodo necesita que permiso primero hacer el config rol
+
+    ];
+   }
+
+
+
+
+
+
     public function __construct(private AccesoService $accesoService)
     {
     }

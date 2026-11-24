@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Usuario extends Authenticatable implements JWTSubject
 {
   use HasFactory, softDeletes;
+
   protected $table = 'usuarios';
   protected $primaryKey = 'id_usuario';
   protected $fillable = [
@@ -48,6 +49,7 @@ class Usuario extends Authenticatable implements JWTSubject
       'rol' => $this->getRolName()
     ];
   }
+  //datos extras en el painload
 
   public function getPermissions(): array{
     return $this->rol?->permissions() ??[];
