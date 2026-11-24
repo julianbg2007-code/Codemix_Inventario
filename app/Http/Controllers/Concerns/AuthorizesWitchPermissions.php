@@ -16,13 +16,16 @@ trait AuthorizesWithPermissions
         foreach (static::permissions() as $method => $permission) {
             $grouped[$permission][] = $method;
         }
+        //aca es por cada permiso que metodos se pueden utilizar
  
         return collect($grouped)
             ->map(fn (array $methods, string $permission) => new Middleware(
                 "permission:{$permission}",
                 only: $methods,
             ))
+            //aca crea un arreglo en donde por cada permiso crea su middleware
             ->values()
+            //aca el value organiza el arreglo 
             ->all();
     }
 }
