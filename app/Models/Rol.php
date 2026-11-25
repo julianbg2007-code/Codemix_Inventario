@@ -22,6 +22,6 @@ class Rol extends Model
     }
 
     public function permissions(): array{
-        return config('rol.'.$this->name, []);
+        return config('rol.'.$this->nombre_rol, []);
     }
 }
