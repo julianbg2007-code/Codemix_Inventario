@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Concers\AuthorizesWitchPermissions;
+use App\Http\Controllers\Concerns\AuthorizesWithPermissions;
 use App\Services\AccesoService;
 use App\Http\Requests\AccesosRequest;
 use Carbon\Carbon;
@@ -10,11 +10,24 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 
 class AccesosController extends Controller implements HasMiddleware
 {
-   use AuthorizesWitchPermissions;
+   use AuthorizesWithPermissions;
 
    public static function permissions(): array
    {
     return [ 
+        'index' => 'productos.ver',
+        'show' => 'productos.crear',
+        'export' => 'productos.eliminar',
+        'store' => 'productos.editar',
+        'update' => 'productos.crear',
+        'destroy' => 'productos.eliminar',
+        'findByUsuario' => 'productos.eliminar',
+        'findByDispositivo' => 'productos.eliminar',
+        'findByNavegador' => 'productos.editar',
+        'findByUbicacion' => 'productos.ver',
+        'findByFecha' => 'productos.crear',
+        'findByEstado' => 'productos.editar',
+
         //que metodo necesita que permiso primero hacer el config rol
 
     ];
