@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Usuario extends Authenticatable implements JWTSubject
@@ -29,7 +29,7 @@ class Usuario extends Authenticatable implements JWTSubject
     'remember_token'
   ];
 
-  protected function cats(): array{
+  protected function casts(): array{
       return[
         'password' => 'hashed'
       ];

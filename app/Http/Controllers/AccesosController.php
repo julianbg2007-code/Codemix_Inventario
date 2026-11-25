@@ -14,19 +14,7 @@ class AccesosController extends Controller implements HasMiddleware
 
    public static function permissions(): array
    {
-    return [ 
-        'index' => 'productos.ver',
-        'show' => 'productos.crear',
-        'export' => 'productos.eliminar',
-        'store' => 'productos.editar',
-        'update' => 'productos.crear',
-        'destroy' => 'productos.eliminar',
-        'findByUsuario' => 'productos.eliminar',
-        'findByDispositivo' => 'productos.eliminar',
-        'findByNavegador' => 'productos.editar',
-        'findByUbicacion' => 'productos.ver',
-        'findByFecha' => 'productos.crear',
-        'findByEstado' => 'productos.editar',
+    return [    
 
         //que metodo necesita que permiso primero hacer el config rol
 

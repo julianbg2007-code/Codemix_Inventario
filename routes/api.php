@@ -15,10 +15,21 @@ use App\Http\Controllers\RecuperacionContrasenaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\AuthController;
+
+
+Route::prefix('/v1/auth')->group(function () {
+       Route::post('/login', [AuthController::class, 'login']);
+       Route::post('/me', [AuthController::class, 'me']);
+       Route::post('/logout', [AuthController::class, 'logout']);
+       Route::post('/refresh', [AuthController::class, 'refresh']);
+       Route::post('/respondWithToken', [AuthController::class, 'respondWithToken']);
+});
+
 
 
 // ACCESOS
-Route::prefix('accesos/buscar')->group(function () {
+Route::prefix('/v1/accesos/buscar')->group(function () {
     Route::get('/usuario/{id_usuario}', [AccesosController::class, 'findByUsuario']);
     Route::get('/dispositivo/{dispositivo}', [AccesosController::class, 'findByDispositivo']);
     Route::get('/navegador/{navegador}', [AccesosController::class, 'findByNavegador']);
@@ -29,7 +40,7 @@ Route::prefix('accesos/buscar')->group(function () {
 
 
 // CATEGORÍAS
-Route::prefix('categorias/buscar')->group(function () {
+Route::prefix('/v1/categorias/buscar')->group(function () {
     Route::get('/nombre/{nombreCategoria}', [CategoriaController::class, 'findByNombreCategoria']);
     Route::get('/descripcion/{descripcion}', [CategoriaController::class, 'findByDescripcion']);
     Route::get('/estado/{estado}', [CategoriaController::class, 'findByEstado']);
@@ -37,7 +48,7 @@ Route::prefix('categorias/buscar')->group(function () {
 
 
 // COMPRAS
-Route::prefix('compras/buscar')->group(function () {
+Route::prefix('/v1/compras/buscar')->group(function () {
     Route::get('/total/{total}', [CompraController::class, 'findByTotal']);
     Route::get('/estado/{estado}', [CompraController::class, 'findByEstado']);
     Route::get('/usuario/{id_usuario}', [CompraController::class, 'findByUsuario']);
@@ -46,7 +57,7 @@ Route::prefix('compras/buscar')->group(function () {
 
 
 // DETALLES DE COMPRA
-Route::prefix('detalles-compras/buscar')->group(function () {
+Route::prefix('/v1/detalles-compras/buscar')->group(function () {
     Route::get('/compra/{id_compra}', [DetalleCompraController::class, 'findByCompra']);
     Route::get('/producto/{id_producto}', [DetalleCompraController::class, 'findByProducto']);
     Route::get('/cantidad/{cantidad}', [DetalleCompraController::class, 'findByCantidad']);
@@ -56,7 +67,7 @@ Route::prefix('detalles-compras/buscar')->group(function () {
 
 
 // DETALLES DE VENTA
-Route::prefix('detalles-ventas/buscar')->group(function () {
+Route::prefix('/v1/detalles-ventas/buscar')->group(function () {
     Route::get('/venta/{id_venta}', [DetalleVentaController::class, 'findByVenta']);
     Route::get('/producto/{id_producto}', [DetalleVentaController::class, 'findByProducto']);
     Route::get('/cantidad/{cantidad}', [DetalleVentaController::class, 'findByCantidad']);
@@ -66,7 +77,7 @@ Route::prefix('detalles-ventas/buscar')->group(function () {
 
 
 // MOVIMIENTOS DE STOCK
-Route::prefix('movimientos-stock/buscar')->group(function () {
+Route::prefix('/v1/movimientos-stock/buscar')->group(function () {
     Route::get('/producto/{id_producto}', [MovimientosStockController::class, 'findByProducto']);
     Route::get('/usuario/{id_usuario}', [MovimientosStockController::class, 'findByUsuario']);
     Route::get('/proveedor/{id_proveedor}', [MovimientosStockController::class, 'findByProveedor']);
@@ -81,7 +92,7 @@ Route::prefix('movimientos-stock/buscar')->group(function () {
 
 
 // NOTIFICACIONES
-Route::prefix('notificaciones/buscar')->group(function () {
+Route::prefix('/v1/notificaciones/buscar')->group(function () {
     Route::get('/usuario/{id_usuario}', [NotificacionesController::class, 'findByIdUsuario']);
     Route::get('/titulo/{titulo}', [NotificacionesController::class, 'findByTitulo']);
     Route::get('/mensaje/{mensaje}', [NotificacionesController::class, 'findByMensaje']);
@@ -93,7 +104,7 @@ Route::prefix('notificaciones/buscar')->group(function () {
 
 
 // PRODUCTOS
-Route::prefix('productos/buscar')->group(function () {
+Route::prefix('/v1/productos/buscar')->group(function () {
     Route::get('/codigo/{codigo}', [ProductoController::class, 'findByCodigo']);
     Route::get('/nombre/{nombre}', [ProductoController::class, 'findByNombre']);
     Route::get('/descripcion/{descripcion}', [ProductoController::class, 'findByDescripcion']);
@@ -110,7 +121,7 @@ Route::prefix('productos/buscar')->group(function () {
 
 
 // PROVEEDORES
-Route::prefix('proveedores/buscar')->group(function () {
+Route::prefix('/v1/proveedores/buscar')->group(function () {
     Route::get('/nombre/{nombre}', [ProveedorController::class, 'findByNombre']);
     Route::get('/contacto/{contacto}', [ProveedorController::class, 'findByContacto']);
     Route::get('/correo/{correo}', [ProveedorController::class, 'findByCorreo']);
@@ -121,7 +132,7 @@ Route::prefix('proveedores/buscar')->group(function () {
 
 
 // RECUPERACIÓN DE CONTRASEÑA
-Route::prefix('recuperacion-contrasenas/buscar')->group(function () {
+Route::prefix('/v1/recuperacion-contrasenas/buscar')->group(function () {
     Route::get('/usuario/{id_usuario}', [RecuperacionContrasenaController::class, 'findByUsuario']);
     Route::get('/codigo/{codigo}', [RecuperacionContrasenaController::class, 'findByCodigo']);
     Route::get('/fecha-expiracion/{fechaExpiracion}', [RecuperacionContrasenaController::class, 'findByFechaExpiracion']);
@@ -137,7 +148,7 @@ Route::prefix('roles/buscar')->group(function () {
 
 
 // USUARIOS
-Route::prefix('usuarios/buscar')->group(function () {
+Route::prefix('/v1/usuarios/buscar')->group(function () {
     Route::get('/nombre/{nombre}', [UsuarioController::class, 'findByNombre']);
     Route::get('/email/{correo}', [UsuarioController::class, 'findByEmail']);
     Route::get('/estado/{estado}', [UsuarioController::class, 'findByEstado']);
@@ -147,7 +158,7 @@ Route::prefix('usuarios/buscar')->group(function () {
 
 
 // VENTAS
-Route::prefix('ventas/buscar')->group(function () {
+Route::prefix('/v1/ventas/buscar')->group(function () {
     Route::get('/nombre-factura/{nombreFactura}', [VentaController::class, 'findByNombreFactura']);
     Route::get('/descuento/{descuento}', [VentaController::class, 'findByDescuento']);
     Route::get('/iva/{iva}', [VentaController::class, 'findByIva']);
@@ -157,16 +168,17 @@ Route::prefix('ventas/buscar')->group(function () {
 });
 
 
-Route::apiResource('accesos', AccesosController::class);
-Route::apiResource('categorias', CategoriaController::class);
-Route::apiResource('compras', CompraController::class);
-Route::apiResource('detalles-compras', DetalleCompraController::class);
-Route::apiResource('detalles-ventas', DetalleVentaController::class);
-Route::apiResource('movimientos-stock', MovimientosStockController::class);
-Route::apiResource('notificaciones', NotificacionesController::class);
-Route::apiResource('productos', ProductoController::class);
-Route::apiResource('proveedores', ProveedorController::class);
-Route::apiResource('recuperacion-contrasenas', RecuperacionContrasenaController::class);
-Route::apiResource('roles', RolController::class);
-Route::apiResource('usuarios', UsuarioController::class);
-Route::apiResource('ventas', VentaController::class);
+Route::apiResource('/v1/accesos', AccesosController::class);
+Route::apiResource('/v1/categorias', CategoriaController::class);
+Route::apiResource('/v1/compras', CompraController::class);
+Route::apiResource('/v1/detalles-compras', DetalleCompraController::class);
+Route::apiResource('/v1/detalles-ventas', DetalleVentaController::class);
+Route::apiResource('/v1/movimientos-stock', MovimientosStockController::class);
+Route::apiResource('/v1/notificaciones', NotificacionesController::class);
+Route::apiResource('/v1/productos', ProductoController::class);
+Route::apiResource('/v1/proveedores', ProveedorController::class);
+Route::apiResource('/v1/recuperacion-contrasenas', RecuperacionContrasenaController::class);
+Route::apiResource('/v1/roles', RolController::class);
+Route::apiResource('/v1/usuarios', UsuarioController::class);
+Route::apiResource('/v1/ventas', VentaController::class);
+

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\UsuarioInterface;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class UsuarioService
@@ -35,7 +34,6 @@ class UsuarioService
 
     public function create(array $data)
     {
-
         return $this->usuarioRepository->create($data);
     }
 

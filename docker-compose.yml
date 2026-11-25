@@ -8,6 +8,7 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_KEY: ${APP_KEY:-}
+      CACHE_STORE: file
       DB_CONNECTION: pgsql
       DB_HOST: db
       DB_PORT: 5432

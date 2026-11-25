@@ -2,13 +2,10 @@
 
 return[
     'administrador' => [
-        'productos.ver',
-        'productos.crear',
-        'productos.eliminar',
-        'productos.editar',
+        '*',    //es       para a acceder a todo 
     ],
 
-    'bodega' => [
+    'bodega' => [ 
         'productos.editar',
     ],
 
